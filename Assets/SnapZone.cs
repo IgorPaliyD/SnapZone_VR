@@ -13,6 +13,7 @@ public class SnapZone : MonoBehaviour
     private bool Snapped;
     private Collider thisCollider;
     private Renderer rend;
+    
 
 
      void OnTriggerEnter(Collider other)
