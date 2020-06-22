@@ -15,6 +15,11 @@ public class SnapParent : MonoBehaviour
         }
         currentChild = childs.Peek();
     }
+    public void AddNewChild(string childName){
+        childs.Push(childName);
+        currentChild = childName;
+
+    }
     public string GetCurrentChild(){
         return currentChild;
     }
@@ -23,7 +28,7 @@ public class SnapParent : MonoBehaviour
         childs.Pop();
         currentChild = childs.Peek();
     }
-    void Start(){
+    void Awake(){
         SetChildsList();
         Debug.Log(currentChild);
     }
