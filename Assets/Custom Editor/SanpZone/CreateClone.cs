@@ -27,7 +27,10 @@ public class CreateClone : MonoBehaviour
         cloneObject = Instantiate(this.gameObject, clonePosition, cloneRotation);
          Destroy(cloneObject.GetComponent<Throwable>());
          Destroy(cloneObject.GetComponent<CreateClone>());
-         //cloneObject.AddComponent();
+         cloneObject.AddComponent<CloneSetup>();
+         cloneObject.GetComponent<CloneSetup>().originName = transform.name;
+         cloneObject.GetComponent<CloneSetup>().freeParentT = transform.parent;
+         
 
     }
     //Current element in parent queue
@@ -35,17 +38,11 @@ public class CreateClone : MonoBehaviour
         currentStackElement = transform.GetComponentInParent<SnapParent>().GetCurrentChild();
     }
     //check is this object name maching current queue element
-    private void CheckForStackMatch(){
-        if(currentStackElement == transform.name){
-            isStackMached = true;
-        }
-        else isStackMached = false;
-    }
+   
     public void OnAttachedToHand(){
         isGrabbed = true;
-        CheckForStackMatch();
         CreateCloneZone();
     }
-   // создать скрипт клона, который красит цвет в синий, если isStackMached = true и красный если нет
+   
    
 }

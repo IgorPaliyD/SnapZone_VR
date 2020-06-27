@@ -5,7 +5,9 @@ using UnityEngine;
 public class SnapParent : MonoBehaviour
 {
     
+    public Transform mainParent;
     private Stack<string> childs = new Stack<string>();
+    
     private string currentChild;
 
     //Set all childs into a Stack
