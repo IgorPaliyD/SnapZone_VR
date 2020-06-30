@@ -5,6 +5,7 @@ using Valve.VR.InteractionSystem;
 
 public class CreateClone : MonoBehaviour
 {
+   
     private GameObject cloneObject;
     private Vector3 clonePosition;
 
@@ -28,21 +29,19 @@ public class CreateClone : MonoBehaviour
          Destroy(cloneObject.GetComponent<Throwable>());
          Destroy(cloneObject.GetComponent<CreateClone>());
          cloneObject.AddComponent<CloneSetup>();
-         cloneObject.GetComponent<CloneSetup>().originName = transform.name;
-         cloneObject.GetComponent<CloneSetup>().freeParentT = transform.parent;
-         
-
+         CloneSetup newClone = cloneObject.GetComponent<CloneSetup>();
+         newClone.origin = transform;
+         newClone.freeParentT = transform.parent;
+        
     }
-    //Current element in parent queue
-    private void GetCurrentStackElement(){
-        currentStackElement = transform.GetComponentInParent<SnapParent>().GetCurrentChild();
-    }
-    //check is this object name maching current queue element
-   
+        
     public void OnAttachedToHand(){
         isGrabbed = true;
         CreateCloneZone();
     }
-   
+    public void OnDetachedFromHand(){
+        isGrabbed = false;
+        Destroy(cloneObject);
+    }
    
 }
