@@ -29,6 +29,7 @@ public class SnapParent : MonoBehaviour
     public void KillChild(){
         childs.Pop();
         currentChild = childs.Peek();
+        Debug.Log(currentChild);
     }
     void Awake(){
         SetChildsList();
