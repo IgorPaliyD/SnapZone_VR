@@ -11,6 +11,7 @@ public class MainParent : MonoBehaviour
      public void AddToParent(string name){
          ObjectsName.Push(name);
          lastChild = name;
+         Debug.Log(lastChild);
 
      }
      public void KillLastChild(){

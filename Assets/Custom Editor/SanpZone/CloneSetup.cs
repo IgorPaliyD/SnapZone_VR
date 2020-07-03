@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
+
 public class CloneSetup : MonoBehaviour
 {
     private SnapParent thisParent;
@@ -23,14 +24,18 @@ private void SetupVisuals(){
         else{Debug.Log("red"); cloneRenderer.material.color = misMatchColor;}  
     }
     else this.GetComponent<MeshRenderer>().gameObject.SetActive(false);
+}  
+private void MatchCheck(){
+    if(thisParent.GetCurrentChild() == origin.name)isMatched = true;
+    else isMatched = false;
 }
-public void InitializeClone(SnapParent p, Transform tr, bool m){
-    isMatched = m;
+public void InitializeClone(SnapParent p, Transform tr){
     thisParent = p;
     origin = tr;
 }
 
 public void Start(){
+    MatchCheck();
     this.GetComponent<Collider>().isTrigger = true;
     SetupVisuals();
 }
@@ -39,12 +44,13 @@ private void InstalOriginObject(){
     origin.rotation = transform.rotation;
     origin.SetParent(thisParent.mainParent);
     thisParent.mainParent.GetComponent<MainParent>().AddToParent(origin.name);
-    MadeOriginSatic();
+    MakeOriginSatic();
     SwapStacks();
 }
-private void MadeOriginSatic(){
+private void MakeOriginSatic(){
+    
     origin.GetComponent<Rigidbody>().isKinematic = true;
-    Destroy(origin.GetComponent<Throwable>());
+    
 
 }
 private void SwapStacks(){

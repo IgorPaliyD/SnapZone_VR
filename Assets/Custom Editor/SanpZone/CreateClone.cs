@@ -21,15 +21,12 @@ public class CreateClone : MonoBehaviour
          Destroy(cloneObject.GetComponent<Throwable>());
          Destroy(cloneObject.GetComponent<CreateClone>());
          CloneSetup cls = cloneObject.AddComponent<CloneSetup>();
-         cls.InitializeClone(p,transform,isStackMached);
+         cls.InitializeClone(p,transform);
     }
-    private void MatchCheck(){
-        if(p.GetCurrentChild() == transform.name) isStackMached =true;
-        else isStackMached = false;
-    }
-
+  
+    
     public void OnAttachedToHand(){
-        MatchCheck();
+        
         isGrabbed = true;
         CreateCloneZone();
     }
