@@ -25,48 +25,49 @@ private void SetupVisuals(){
     }
     else this.GetComponent<MeshRenderer>().gameObject.SetActive(false);
 }  
-private void MatchCheck(){
-    if(thisParent.GetCurrentChild() == origin.name)isMatched = true;
-    else isMatched = false;
-}
-public void InitializeClone(SnapParent p, Transform tr){
-    thisParent = p;
-    origin = tr;
+// private void MatchCheck(){
+//     if(thisParent.GetCurrentChild() == origin.name)isMatched = true;
+//     else isMatched = false;
+// }
+public void InitializeClone( bool m/*SnapParent p, Transform tr*/){
+    // thisParent = p;
+    // origin = tr;
+    isMatched = m;
 }
 
 public void Start(){
-    MatchCheck();
-    this.GetComponent<Collider>().isTrigger = true;
+    //MatchCheck();
+    //this.GetComponent<Collider>().isTrigger = true;
     SetupVisuals();
 }
-private void InstalOriginObject(){
-    origin.position  = transform.position;
-    origin.rotation = transform.rotation;
-    origin.SetParent(thisParent.mainParent);
-    thisParent.mainParent.GetComponent<MainParent>().AddToParent(origin.name);
-    MakeOriginSatic();
-    SwapStacks();
-}
-private void MakeOriginSatic(){
+// private void InstalOriginObject(){
+//     origin.position  = transform.position;
+//     origin.rotation = transform.rotation;
+//     origin.SetParent(thisParent.mainParent);
+//     thisParent.mainParent.GetComponent<MainParent>().AddToParent(origin.name);
+//     MakeOriginSatic();
+//     SwapStacks();
+// }
+// private void MakeOriginSatic(){
     
-    origin.GetComponent<Rigidbody>().isKinematic = true;
+//     origin.GetComponent<Rigidbody>().isKinematic = true;
     
 
-}
-private void SwapStacks(){
-thisParent.KillChild();
-thisParent.mainParent.GetComponent<MainParent>().AddToParent(origin.name);
-}
+// }
+// private void SwapStacks(){
+// thisParent.KillChild();
+// thisParent.mainParent.GetComponent<MainParent>().AddToParent(origin.name);
+// }
 
-public void OnTriggerStay(Collider other){
+// public void OnTriggerStay(Collider other){
     
-if(other.name == origin.name && isMatched){
-    CollisionMatch = true;
-    InstalOriginObject();
-}
+// if(other.name == origin.name && isMatched){
+//     CollisionMatch = true;
+//     InstalOriginObject();
+// }
 
-else return;
-}
+// else return;
+// }
 
 
 }
