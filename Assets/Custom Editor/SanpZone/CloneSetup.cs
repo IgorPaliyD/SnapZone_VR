@@ -58,7 +58,8 @@ thisParent.KillChild();
 thisParent.mainParent.GetComponent<MainParent>().AddToParent(origin.name);
 }
 
-public void OnTriggerEnter(Collider other){
+public void OnTriggerStay(Collider other){
+    
 if(other.name == origin.name && isMatched){
     CollisionMatch = true;
     InstalOriginObject();
