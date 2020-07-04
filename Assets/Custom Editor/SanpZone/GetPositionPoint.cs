@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GetPositionPoint : MonoBehaviour
 {
-    public Vector3 GatherPoint;
+    public Vector3 truePosition;
+    public Quaternion trueRotation;
 
     public void SetupPoint(){
-        GatherPoint = this.transform.position;
+        truePosition = this.transform.position;
+        trueRotation = this.transform.rotation;
     }
 }
